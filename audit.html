@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>AI Ethics Audit Dashboard</title>
+
+<script src="https://cdn.tailwindcss.com"></script>
+
+</head>
+
+<body class="bg-slate-950 text-white min-h-screen p-10">
+
+<div class="max-w-5xl mx-auto">
+
+<h1 class="text-4xl font-bold mb-8 text-emerald-400">
+AI Ethics Analyzer Dashboard
+</h1>
+
+<!-- INPUT -->
+<div class="bg-slate-900 p-6 rounded-xl mb-8">
+<textarea id="ideaInput"
+class="w-full p-4 rounded-lg text-black"
+placeholder="Enter your AI idea here..."></textarea>
+
+<button onclick="runAudit()"
+class="mt-4 bg-emerald-500 px-6 py-3 rounded-lg font-bold">
+Run AI Audit
+</button>
+</div>
+
+<!-- RISK SCORES -->
+<div class="grid grid-cols-2 gap-6 mb-8">
+
+<div class="bg-slate-900 p-5 rounded-lg">
+<h3 class="font-bold">Bias Risk</h3>
+<p id="biasRisk" class="text-2xl">-</p>
+</div>
+
+<div class="bg-slate-900 p-5 rounded-lg">
+<h3 class="font-bold">Privacy Risk</h3>
+<p id="privacyRisk" class="text-2xl">-</p>
+</div>
+
+<div class="bg-slate-900 p-5 rounded-lg">
+<h3 class="font-bold">Transparency Risk</h3>
+<p id="transparencyRisk" class="text-2xl">-</p>
+</div>
+
+<div class="bg-slate-900 p-5 rounded-lg">
+<h3 class="font-bold">Misuse Risk</h3>
+<p id="misuseRisk" class="text-2xl">-</p>
+</div>
+
+</div>
+
+<!-- PROJECT METRICS -->
+<div class="bg-slate-900 p-6 rounded-xl mb-8">
+<h2 class="text-xl font-bold mb-3">System Metrics</h2>
+
+<p>Accuracy: <span id="accuracy"></span></p>
+<p>Processing Time: <span id="processing"></span></p>
+<p>Compliance Score: <span id="compliance"></span></p>
+</div>
+
+<!-- PROJECT EVALUATION -->
+<div class="bg-slate-900 p-6 rounded-xl mb-8">
+<h2 class="text-xl font-bold mb-3">Project Evaluation</h2>
+
+<p>Prototype Functionality: <span id="prototype"></span></p>
+<p>Technical Complexity: <span id="complexity"></span></p>
+<p>Implementation Quality: <span id="implementation"></span></p>
+<p>Scalability Potential: <span id="scalability"></span></p>
+</div>
+
+<!-- SUGGESTIONS -->
+<div class="bg-slate-900 p-6 rounded-xl mb-8">
+<h2 class="text-xl font-bold mb-3">AI Improvement Suggestions</h2>
+
+<ul id="suggestions" class="list-disc ml-6"></ul>
+</div>
+
+<!-- RESOLUTION STEPS -->
+<div class="bg-slate-900 p-6 rounded-xl mb-8">
+<h2 class="text-xl font-bold mb-3">Risk Resolution Steps</h2>
+
+<div id="resolutionSteps"></div>
+</div>
+
+<!-- ETHICS REPORT -->
+<div class="bg-slate-900 p-6 rounded-xl mb-8">
+<h2 class="text-xl font-bold mb-3">AI Ethics Report</h2>
+
+<pre id="report"
+class="whitespace-pre-wrap text-sm text-gray-300"></pre>
+</div>
+
+</div>
+
+<script>
+
+async function runAudit(){
+
+const idea = document.getElementById("ideaInput").value;
+
+if(!idea){
+alert("Please enter an AI idea");
+return;
+}
+
+try{
+
+// -----------------
+// 1️⃣ RISK ANALYSIS
+// -----------------
+
+const riskRes = await fetch("http://127.0.0.1:8000/risk-score",{
+method:"POST",
+headers:{ "Content-Type":"application/json"},
+body:JSON.stringify({idea:idea})
+});
+
+const riskData = await riskRes.json();
+
+document.getElementById("biasRisk").innerText =
+riskData.risk_scores.bias_risk;
+
+document.getElementById("privacyRisk").innerText =
+riskData.risk_scores.privacy_risk;
+
+document.getElementById("transparencyRisk").innerText =
+riskData.risk_scores.transparency_risk;
+
+document.getElementById("misuseRisk").innerText =
+riskData.risk_scores.misuse_risk;
+
+// -----------------
+// 2️⃣ SYSTEM METRICS
+// -----------------
+
+document.getElementById("accuracy").innerText =
+riskData.system_metrics.accuracy;
+
+document.getElementById("processing").innerText =
+riskData.system_metrics.processing_time;
+
+document.getElementById("compliance").innerText =
+riskData.system_metrics.compliance_score;
+
+
+// -----------------
+// 3️⃣ PROJECT EVALUATION
+// -----------------
+
+document.getElementById("prototype").innerText =
+riskData.project_evaluation.prototype_functionality;
+
+document.getElementById("complexity").innerText =
+riskData.project_evaluation.technical_complexity;
+
+document.getElementById("implementation").innerText =
+riskData.project_evaluation.implementation_quality;
+
+document.getElementById("scalability").innerText =
+riskData.project_evaluation.scalability_potential;
+
+
+// -----------------
+// 4️⃣ SUGGESTIONS
+// -----------------
+
+const suggestionRes =
+await fetch("http://127.0.0.1:8000/suggestions");
+
+const suggestionData = await suggestionRes.json();
+
+const list = document.getElementById("suggestions");
+list.innerHTML="";
+
+suggestionData.suggestions.forEach(s=>{
+const li=document.createElement("li");
+li.innerText=s;
+list.appendChild(li);
+});
+
+
+// -----------------
+// 5️⃣ RESOLUTION STEPS
+// -----------------
+
+const resolveRes =
+await fetch("http://127.0.0.1:8000/resolve-risks");
+
+const resolveData = await resolveRes.json();
+
+const stepDiv =
+document.getElementById("resolutionSteps");
+
+stepDiv.innerHTML="";
+
+resolveData.resolution_steps.forEach(risk=>{
+
+const block=document.createElement("div");
+block.className="mb-4";
+
+let html=`<h3 class="font-bold text-emerald-400">${risk.risk}</h3><ul class="list-disc ml-6">`;
+
+risk.steps.forEach(step=>{
+html+=`<li>${step}</li>`;
+});
+
+html+="</ul>";
+
+block.innerHTML=html;
+
+stepDiv.appendChild(block);
+
+});
+
+
+// -----------------
+// 6️⃣ ETHICS REPORT
+// -----------------
+
+const reportRes =
+await fetch("http://127.0.0.1:8000/ethics-report");
+
+const reportData = await reportRes.json();
+
+document.getElementById("report").innerText =
+reportData.ethics_report;
+
+}
+catch(err){
+
+console.error(err);
+alert("Error connecting to FastAPI backend");
+
+}
+
+}
+
+</script>
+
+</body>
+</html>

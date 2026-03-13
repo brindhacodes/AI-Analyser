@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Shield | Intelligence Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;600;700;800&display=swap');
+        
+        body { 
+            font-family: 'Plus Jakarta Sans', sans-serif; 
+            background-color: #020617;
+        }
+
+        .custom-glass {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(51, 65, 85, 0.5);
+        }
+
+        .progress-fill {
+            transition: width 1.5s cubic-bezier(0.1, 0.5, 0.2, 1);
+        }
+    </style>
+</head>
+<body class="bg-slate-950 text-slate-100 min-h-screen overflow-x-hidden">
+
+    <div class="max-w-[1600px] mx-auto p-6 lg:p-10">
+        
+        <nav class="mb-10 flex justify-between items-center border-b border-slate-800 pb-6">
+            <div class="flex items-center gap-4">
+                <div class="bg-emerald-500 p-2 rounded-lg">
+                    <i class="fas fa-shield-halved text-slate-950 text-xl"></i>
+                </div>
+                <h2 class="text-xl font-extrabold tracking-tighter uppercase italic">AI Shield <span class="text-emerald-500">Intelligence</span></h2>
+            </div>
+            
+            <div class="flex items-center gap-6">
+                <a href="audit.html" class="text-emerald-500 hover:text-emerald-400 font-bold text-xs flex items-center gap-2 transition-all group">
+                    GO TO AUDIT <i class="fas fa-arrow-right group-hover:translate-x-1 transition-transform"></i>
+                </a>
+                <div class="flex items-center gap-2 px-3 py-1.5 bg-emerald-500/10 border border-emerald-500/20 rounded-full">
+                    <span class="h-2 w-2 bg-emerald-500 rounded-full animate-pulse"></span>
+                    <span class="text-[10px] font-bold text-emerald-500 uppercase tracking-widest">Live Monitoring</span>
+                </div>
+            </div>
+        </nav>
+
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10">
+            
+            <main class="lg:col-span-8">
+                <header class="mb-10">
+                    <h1 class="text-4xl font-black mb-3 uppercase tracking-tight">Audit <span class="text-emerald-500">Framework</span></h1>
+                    <p class="text-slate-400 text-lg max-w-2xl">Five-pillar governance model ensuring models are secure, ethical, and legally compliant.</p>
+                </header>
+
+                <section class="grid grid-cols-1 md:grid-cols-2 gap-5 mb-12">
+                    <div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-800 hover:border-purple-500/30 transition-all group">
+                        <div class="text-purple-500 text-2xl mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-balance-scale"></i></div>
+                        <h3 class="text-lg font-bold mb-2">Bias & Fairness</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">Scanning for proxy variables and demographic markers that cause disparate impact across racial, gender, or age-based groups.</p>
+                    </div>
+
+                    <div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-800 hover:border-cyan-400/30 transition-all group">
+                        <div class="text-cyan-400 text-2xl mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-user-shield"></i></div>
+                        <h3 class="text-lg font-bold mb-2">Privacy & PII</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">Automated detection of PII leakage and verification of data minimization protocols to maintain strict data integrity.</p>
+                    </div>
+
+                    <div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-800 hover:border-amber-500/30 transition-all group">
+                        <div class="text-amber-500 text-2xl mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-eye"></i></div>
+                        <h3 class="text-lg font-bold mb-2">Transparency</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">Audit of XAI (Explainability). We ensure decision logic is not a black box and can be interpreted clearly by humans.</p>
+                    </div>
+
+                    <div class="bg-slate-900/50 p-6 rounded-2xl border border-slate-800 hover:border-rose-500/30 transition-all group">
+                        <div class="text-rose-500 text-2xl mb-4 group-hover:scale-110 transition-transform"><i class="fas fa-earth-americas"></i></div>
+                        <h3 class="text-lg font-bold mb-2">Social Impact</h3>
+                        <p class="text-sm text-slate-400 leading-relaxed">Assessment of automation risks and potential for workforce displacement or societal polarization in deployment regions.</p>
+                    </div>
+                </section>
+
+                <section class="bg-emerald-950/10 border border-emerald-500/20 rounded-[2rem] p-8">
+                    <h2 class="text-xl font-black mb-8 flex items-center gap-3 uppercase tracking-tighter">
+                        <i class="fas fa-shield-check text-emerald-500"></i> Governance Hardening Checklist
+                    </h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <span class="bg-emerald-500 text-slate-950 h-6 w-6 rounded-full flex-shrink-0 flex items-center justify-center font-black text-xs">1</span>
+                                <div>
+                                    <p class="font-bold text-sm">Sanitize Training Sets</p>
+                                    <p class="text-xs text-slate-400 mt-1">Remove PII and correlate variables to ensure no hidden bias proxies exist.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <span class="bg-emerald-500 text-slate-950 h-6 w-6 rounded-full flex-shrink-0 flex items-center justify-center font-black text-xs">2</span>
+                                <div>
+                                    <p class="font-bold text-sm">Implement Rate Limiting</p>
+                                    <p class="text-xs text-slate-400 mt-1">Mitigate misuse risks by capping requests and filtering adversarial patterns.</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="space-y-6">
+                            <div class="flex gap-4">
+                                <span class="bg-emerald-500 text-slate-950 h-6 w-6 rounded-full flex-shrink-0 flex items-center justify-center font-black text-xs">3</span>
+                                <div>
+                                    <p class="font-bold text-sm">Document Model Cards</p>
+                                    <p class="text-xs text-slate-400 mt-1">Foster transparency by publishing the model's intended use and limitations.</p>
+                                </div>
+                            </div>
+                            <div class="flex gap-4">
+                                <span class="bg-emerald-500 text-slate-950 h-6 w-6 rounded-full flex-shrink-0 flex items-center justify-center font-black text-xs">4</span>
+                                <div>
+                                    <p class="font-bold text-sm">Counterfactual Testing</p>
+                                    <p class="text-xs text-slate-400 mt-1">Verify behavior by testing the model on diverse, simulated demographic cases.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+            </main>
+
+            <aside class="lg:col-span-4">
+                <div class="sticky top-10">
+                    <div class="custom-glass p-8 rounded-[2.5rem] shadow-2xl">
+                        <div class="flex items-center gap-3 mb-10">
+                            <div class="text-cyan-400 text-xl">
+                                <i class="fas fa-fingerprint"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-slate-200 text-sm font-black uppercase tracking-widest">Market Analytics</h3>
+                                <p class="text-slate-500 text-[10px] uppercase font-bold tracking-tighter">Corporate Concerns 2026</p>
+                            </div>
+                        </div>
+
+                        <div class="space-y-10">
+                            <div class="group">
+                                <div class="flex justify-between items-end mb-3">
+                                    <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest group-hover:text-emerald-400 transition-colors">Privacy & Data Safety</span>
+                                    <span class="text-xs font-black text-emerald-500">25%</span>
+                                </div>
+                                <div class="h-1.5 w-full bg-slate-800/50 rounded-full overflow-hidden">
+                                    <div class="progress-fill h-full bg-emerald-500 rounded-full shadow-[0_0_15px_rgba(16,185,129,0.4)]" style="width: 25%"></div>
+                                </div>
+                            </div>
+
+                            <div class="group">
+                                <div class="flex justify-between items-end mb-3">
+                                    <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest group-hover:text-cyan-400 transition-colors">Explainability (XAI)</span>
+                                    <span class="text-xs font-black text-cyan-500">20%</span>
+                                </div>
+                                <div class="h-1.5 w-full bg-slate-800/50 rounded-full overflow-hidden">
+                                    <div class="progress-fill h-full bg-cyan-400 rounded-full shadow-[0_0_15px_rgba(34,211,238,0.4)]" style="width: 20%"></div>
+                                </div>
+                            </div>
+
+                            <div class="group">
+                                <div class="flex justify-between items-end mb-3">
+                                    <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest group-hover:text-purple-400 transition-colors">Transparency</span>
+                                    <span class="text-xs font-black text-purple-500">18%</span>
+                                </div>
+                                <div class="h-1.5 w-full bg-slate-800/50 rounded-full overflow-hidden">
+                                    <div class="progress-fill h-full bg-purple-500 rounded-full shadow-[0_0_15px_rgba(168,85,247,0.4)]" style="width: 18%"></div>
+                                </div>
+                            </div>
+
+                            <div class="group">
+                                <div class="flex justify-between items-end mb-3">
+                                    <span class="text-[10px] font-extrabold text-slate-400 uppercase tracking-widest group-hover:text-amber-500 transition-colors">Data Accountability</span>
+                                    <span class="text-xs font-black text-amber-500">12%</span>
+                                </div>
+                                <div class="h-1.5 w-full bg-slate-800/50 rounded-full overflow-hidden">
+                                    <div class="progress-fill h-full bg-amber-500 rounded-full shadow-[0_0_15px_rgba(245,158,11,0.4)]" style="width: 12%"></div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="mt-12 pt-8 border-t border-slate-800/50">
+                            <div class="bg-slate-950/50 p-4 rounded-2xl border border-slate-800">
+                                <p class="text-[10px] text-slate-400 leading-relaxed italic text-center">
+                                    "Governance frameworks drive trust. Trust drives adoption."
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </aside>
+        </div>
+
+        <footer class="mt-20 text-center text-slate-600 text-[10px] uppercase tracking-[0.5em] border-t border-slate-900 pt-10 pb-10">
+            AI Shield Security Protocol v2.6.0 | Confidential Dashboard
+        </footer>
+    </div>
+
+</body>
+</html>
